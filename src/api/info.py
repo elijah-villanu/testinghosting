@@ -1,21 +1,20 @@
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter
 from pydantic import BaseModel
-from src.api import auth
+from src import database as db
 
 router = APIRouter(
-    prefix="/info",
-    tags=["info"],
-    dependencies=[Depends(auth.get_api_key)],
 )
 
 class Timestamp(BaseModel):
-    day: str
-    hour: int
-
-@router.post("/current_time")
+    year: int
+    month: int
+    day: int
+    
+@router.post("/info/current_time")
 def post_time(timestamp: Timestamp):
     """
-    Share current time.
+    Get current time.
     """
-    return "OK"
+                            #02/07/1975
+    return f"{timestamp.month}/{timestamp.day}/{timestamp.year}"
 

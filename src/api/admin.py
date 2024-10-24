@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, Request
 from pydantic import BaseModel
 from src.api import auth
+from src import database as db
 
 router = APIRouter(
     prefix="/admin",
@@ -11,8 +12,8 @@ router = APIRouter(
 @router.post("/reset")
 def reset():
     """
-    Reset the game state. Gold goes to 100, all potions are removed from
-    inventory, and all barrels are removed from inventory. Carts are all reset.
+    Resets all data in user inventory, village, and ecosystem to default values.
     """
+
     return "OK"
 
