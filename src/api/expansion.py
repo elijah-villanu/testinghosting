@@ -9,7 +9,7 @@ router = APIRouter(
     dependencies=[Depends(auth.get_api_key)],)
 
 with db.engine.begin() as connection:
-    result = connection.execute(sqlalchemy.text("SELECT quantity, resource_name FROM inventory"))
+    result = connection.execute(sqlalchemy.text("SELECT quantity, resource_name FROM storage"))
     print(result.fetchall())
 
 
